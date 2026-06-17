@@ -12,6 +12,7 @@ function createRow(label, value)
 // Initializing application bindings
 document.addEventListener("DOMContentLoaded", function ()
 {
+  
   renderHistory();
 
   // Dynamically convert typed inputs into true uppercase string values
