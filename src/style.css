@@ -135,6 +135,12 @@ button:hover {
 	font-size: 13px;
 }
 
+#historyTable td:has(button) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 #historyTable th {
 	background-color: #f8f9fa;
 	font-weight: bold;
