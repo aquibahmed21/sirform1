@@ -7,7 +7,7 @@
 	<!-- add css -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>SIR Simple Form</title>
-  <script type="module" crossorigin src="/assets/index-fS87bDcz.js"></script>
+  <script type="module" crossorigin src="/assets/index-R0QYJreA.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-CWcqjQkn.css">
 </head>
 
@@ -22,15 +22,15 @@
 					<div class="grid">
 						<div class="field">
 							<label for="oldName">Name</label>
-							<input type="text" id="oldName" class="uppercase-input" required>
+							<input type="text" id="oldName" class="uppercase-input" placeholder="FIRSTNAME LASTNAME" required>
 						</div>
 						<div class="field">
 							<label for="oldEpic">EPIC No</label>
-							<input type="text" id="oldEpic" class="uppercase-input" required>
+							<input type="text" id="oldEpic" class="uppercase-input" placeholder="ZUI50000000" required>
 						</div>
 						<div class="field">
 							<label for="oldRelative">Relative's Name</label>
-							<input type="text" id="oldRelative" class="uppercase-input">
+							<input type="text" id="oldRelative" class="uppercase-input" placeholder="FIRSTNAME LASTNAME" required>
 						</div>
 						<div class="field">
 							<label for="oldRelationship">Relationship</label>
@@ -44,27 +44,28 @@
 						</div>
 						<div class="field">
 							<label for="oldDob">Age / DOB</label>
-							<input type="text" id="oldDob" class="uppercase-input">
+							<input type="text" id="oldDob" class="uppercase-input" placeholder="YY or DD-MM-YY"
+								pattern="[0-9]{2}|[0-9]{2}-[0-9]{2}-[0-9]{2}" required>
 						</div>
 						<div class="field">
 							<label for="oldDistrict">District</label>
-							<input type="text" id="oldDistrict" class="uppercase-input">
+							<input type="text" id="oldDistrict" class="uppercase-input" placeholder="32-B.B.M.P(NORTH)" required>
 						</div>
 						<div class="field">
 							<label for="oldAcNo">AC No</label>
-							<input type="text" id="oldAcNo" class="uppercase-input">
+							<input type="number" id="oldAcNo" class="uppercase-input" required placeholder="160" required>
 						</div>
 						<div class="field">
 							<label for="oldAcName">AC Name</label>
-							<input type="text" id="oldAcName" class="uppercase-input">
+							<input type="text" id="oldAcName" class="uppercase-input" placeholder="SARVAGNANAGAR" required>
 						</div>
 						<div class="field">
 							<label for="oldPartNo">Part No</label>
-							<input type="text" id="oldPartNo" class="uppercase-input">
+							<input type="number" id="oldPartNo" class="uppercase-input" placeholder="1" required>
 						</div>
 						<div class="field">
 							<label for="oldSlNo">SL No</label>
-							<input type="text" id="oldSlNo" class="uppercase-input">
+							<input type="number" id="oldSlNo" class="uppercase-input" placeholder="1" required>
 						</div>
 					</div>
 				</div>
@@ -86,15 +87,15 @@
 					<div class="grid">
 						<div class="field">
 							<label for="newName">Name</label>
-							<input type="text" id="newName" class="uppercase-input">
+							<input type="text" id="newName" class="uppercase-input" placeholder="FIRSTNAME LASTNAME" required>
 						</div>
 						<div class="field">
 							<label for="newEpic">EPIC No</label>
-							<input type="text" id="newEpic" class="uppercase-input">
+							<input type="text" id="newEpic" class="uppercase-input" placeholder="ZUI50000000" required>
 						</div>
 						<div class="field">
 							<label for="newRelative">Relative's Name</label>
-							<input type="text" id="newRelative" class="uppercase-input">
+							<input type="text" id="newRelative" class="uppercase-input" placeholder="FIRSTNAME LASTNAME" required>
 						</div>
 						<div class="field">
 							<label for="newRelationship">Relationship</label>
@@ -108,31 +109,32 @@
 						</div>
 						<div class="field">
 							<label for="newDob">Age / DOB</label>
-							<input type="text" id="newDob" class="uppercase-input">
+							<input type="text" id="newDob" class="uppercase-input" placeholder="YY or DD-MM-YY"
+								pattern="[0-9]{2}|[0-9]{2}-[0-9]{2}-[0-9]{2}" required>
 						</div>
 						<div class="field">
 							<label for="newDistrict">District</label>
-							<input type="text" id="newDistrict" class="uppercase-input">
+							<input type="text" id="newDistrict" class="uppercase-input" placeholder="32-B.B.M.P(NORTH)" required>
 						</div>
 						<div class="field">
 							<label for="newAcNo">AC No</label>
-							<input type="text" id="newAcNo" class="uppercase-input">
+							<input type="number" id="newAcNo" class="uppercase-input" placeholder="160" required>
 						</div>
 						<div class="field">
 							<label for="newAcName">AC Name</label>
-							<input type="text" id="newAcName" class="uppercase-input">
+							<input type="text" id="newAcName" class="uppercase-input" placeholder="SARVAGNANAGAR" required>
 						</div>
 						<div class="field">
 							<label for="newPartNo">Part No</label>
-							<input type="text" id="newPartNo" class="uppercase-input">
+							<input type="number" id="newPartNo" class="uppercase-input" placeholder="1" required>
 						</div>
 						<div class="field">
 							<label for="newSlNo">SL No</label>
-							<input type="text" id="newSlNo" class="uppercase-input">
+							<input type="number" id="newSlNo" class="uppercase-input" placeholder="1" required>
 						</div>
 						<div class="field">
 							<label for="contact">Contact</label>
-							<input type="text" id="contact" class="uppercase-input">
+							<input type="tel" id="contact" class="uppercase-input" placeholder="1234567890" pattern="[0-9]{10}">
 						</div>
 					</div>
 				</div>

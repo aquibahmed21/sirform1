@@ -135,6 +135,7 @@ function renderHistory(filterText = "") {
 		tr.querySelector(".edit").onclick = () => editRecord(item.id);
 		tr.querySelector(".delete").onclick = () => deleteRecord(item.id);
 		tr.querySelector(".view").onclick = () => addProgeny(item.id);
+		tr.scrollIntoView();
 	});
 }
 function addProgeny(id) {
@@ -151,6 +152,9 @@ function addProgeny(id) {
 	document.getElementById("oldAcName").value = record.newAcName;
 	document.getElementById("oldPartNo").value = record.newPartNo;
 	document.getElementById("oldSlNo").value = record.newSlNo;
+	document.getElementById("newRelative").value = record.newName;
+	document.getElementById("newName").previousElementSibling.scrollIntoView();
+	document.getElementById("newName").focus();
 }
 function editRecord(id) {
 	const record = JSON.parse(localStorage.getItem("voterHistory")).find((item) => item.id === id);
@@ -178,6 +182,8 @@ function editRecord(id) {
 	document.getElementById("contact").value = record.contact;
 	document.querySelector("input[name=\"personType\"][valueType=\"" + record.personType + "\"]").checked = true;
 	document.querySelector("[type=\"submit\"]").setAttribute("data-id", id);
+	document.getElementById("oldName").previousElementSibling.scrollIntoView();
+	document.getElementById("oldName").focus();
 }
 function printFromHistory(record) {
 	generatePrintPage(record);
@@ -259,8 +265,11 @@ function generatePrintPage(data) {
     window.onload = function() {
         setTimeout(function() {
             window.print();
-            window.close();
         }, 300);
+    };
+
+    window.onafterprint = () => {
+        window.close();
     };
 <\/script>
 </body>
