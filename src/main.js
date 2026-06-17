@@ -12,7 +12,7 @@ function createRow(label, value)
 // Initializing application bindings
 document.addEventListener("DOMContentLoaded", function ()
 {
-  
+
   renderHistory();
 
   // Dynamically convert typed inputs into true uppercase string values
@@ -149,6 +149,7 @@ function renderHistory(filterText = '')
     tr.querySelector('.edit').onclick = () => editRecord(item.id);
     tr.querySelector('.delete').onclick = () => deleteRecord(item.id);
     tr.querySelector('.view').onclick = () => addProgeny(item.id);
+    tr.scrollIntoView();
   });
 }
 
@@ -168,6 +169,9 @@ function addProgeny(id)
   document.getElementById('oldAcName').value = record.newAcName;
   document.getElementById('oldPartNo').value = record.newPartNo;
   document.getElementById('oldSlNo').value = record.newSlNo;
+  document.getElementById('newRelative').value = record.newName;
+  document.getElementById('newName').previousElementSibling.scrollIntoView();
+  document.getElementById('newName').focus();
 }
 
 // Router adapter to link edit buttons directly to the template generator
@@ -199,6 +203,8 @@ function editRecord(id)
   document.getElementById('contact').value = record.contact;
   document.querySelector('input[name="personType"][valueType="' + record.personType + '"]').checked = true;
   document.querySelector('[type="submit"]').setAttribute('data-id', id);
+  document.getElementById('oldName').previousElementSibling.scrollIntoView();
+  document.getElementById('oldName').focus();
 }
 
 // Router adapter to link history buttons directly to the template generator
@@ -288,8 +294,11 @@ function generatePrintPage(data)
     window.onload = function() {
         setTimeout(function() {
             window.print();
-            window.close();
         }, 300);
+    };
+
+    window.onafterprint = () => {
+        window.close();
     };
 <\/script>
 </body>
