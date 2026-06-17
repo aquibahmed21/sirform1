@@ -17,7 +17,7 @@ export default defineConfig({
   server: {
     open: true
   },
-  base: "/sirform1",
+  base: "/",
   build: {
     minify: false
   }
