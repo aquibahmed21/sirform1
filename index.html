@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<link rel="icon" type="image/svg+xml" href="/sirform1/favicon.svg" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>SIR Simple Form</title>
+  <script type="module" crossorigin src="/sirform1/assets/index-D8Enk1tA.js"></script>
+  <link rel="stylesheet" crossorigin href="/sirform1/assets/index-C-94aZOT.css">
+</head>
+
+<body>
+	<div id="app">
+		<div class="formContainer">
+			<h2>Voter Verification Form</h2>
+
+			<form id="verificationForm">
+				<div class="section">
+					<h3>2002 Details</h3>
+					<div class="grid">
+						<div class="field">
+							<label for="oldName">Name</label>
+							<input type="text" id="oldName" class="uppercase-input" required>
+						</div>
+						<div class="field">
+							<label for="oldEpic">EPIC No</label>
+							<input type="text" id="oldEpic" class="uppercase-input" required>
+						</div>
+						<div class="field">
+							<label for="oldRelative">Relative's Name</label>
+							<input type="text" id="oldRelative" class="uppercase-input">
+						</div>
+						<div class="field">
+							<label for="oldRelationship">Relationship</label>
+							<select id="oldRelationship" required>
+								<option value="">-- SELECT RELATIONSHIP --</option>
+								<option value="FATHER">FATHER</option>
+								<option value="MOTHER">MOTHER</option>
+								<option value="GRANDFATHER">GRANDFATHER</option>
+								<option value="GRANDMOTHER">GRANDMOTHER</option>
+							</select>
+						</div>
+						<div class="field">
+							<label for="oldDob">Age / DOB</label>
+							<input type="text" id="oldDob" class="uppercase-input">
+						</div>
+						<div class="field">
+							<label for="oldDistrict">District</label>
+							<input type="text" id="oldDistrict" class="uppercase-input">
+						</div>
+						<div class="field">
+							<label for="oldAcNo">AC No</label>
+							<input type="text" id="oldAcNo" class="uppercase-input">
+						</div>
+						<div class="field">
+							<label for="oldAcName">AC Name</label>
+							<input type="text" id="oldAcName" class="uppercase-input">
+						</div>
+						<div class="field">
+							<label for="oldPartNo">Part No</label>
+							<input type="text" id="oldPartNo" class="uppercase-input">
+						</div>
+						<div class="field">
+							<label for="oldSlNo">SL No</label>
+							<input type="text" id="oldSlNo" class="uppercase-input">
+						</div>
+					</div>
+				</div>
+
+				<div class="section">
+					<h3>2026 Verification Details</h3>
+					<div class="radioGroup">
+						<label>
+							<input type="radio" name="personType" value="Same Person (Self)" checked valueType="SAME PERSON (SELF)">
+							Same Person (Self)
+						</label>
+						<label>
+							<input type="radio" name="personType" value="Son / Daughter (Progeny)"
+								valueType="SON / DAUGHTER (PROGENY)">
+							Son / Daughter (Progeny)
+						</label>
+					</div>
+
+					<div class="grid">
+						<div class="field">
+							<label for="newName">Name</label>
+							<input type="text" id="newName" class="uppercase-input">
+						</div>
+						<div class="field">
+							<label for="newEpic">EPIC No</label>
+							<input type="text" id="newEpic" class="uppercase-input">
+						</div>
+						<div class="field">
+							<label for="newRelative">Relative's Name</label>
+							<input type="text" id="newRelative" class="uppercase-input">
+						</div>
+						<div class="field">
+							<label for="newRelationship">Relationship</label>
+							<select id="newRelationship" required>
+								<option value="">-- SELECT RELATIONSHIP --</option>
+								<option value="FATHER">FATHER</option>
+								<option value="MOTHER">MOTHER</option>
+								<option value="GRANDFATHER">GRANDFATHER</option>
+								<option value="GRANDMOTHER">GRANDMOTHER</option>
+							</select>
+						</div>
+						<div class="field">
+							<label for="newDob">Age / DOB</label>
+							<input type="text" id="newDob" class="uppercase-input">
+						</div>
+						<div class="field">
+							<label for="newDistrict">District</label>
+							<input type="text" id="newDistrict" class="uppercase-input">
+						</div>
+						<div class="field">
+							<label for="newAcNo">AC No</label>
+							<input type="text" id="newAcNo" class="uppercase-input">
+						</div>
+						<div class="field">
+							<label for="newAcName">AC Name</label>
+							<input type="text" id="newAcName" class="uppercase-input">
+						</div>
+						<div class="field">
+							<label for="newPartNo">Part No</label>
+							<input type="text" id="newPartNo" class="uppercase-input">
+						</div>
+						<div class="field">
+							<label for="newSlNo">SL No</label>
+							<input type="text" id="newSlNo" class="uppercase-input">
+						</div>
+						<div class="field">
+							<label for="contact">Contact</label>
+							<input type="text" id="contact" class="uppercase-input">
+						</div>
+					</div>
+				</div>
+
+				<button type="submit">Save Draft</button>
+				<button type="reset" id="resetForm">Reset Form</button>
+			</form>
+
+			<hr class="divider">
+
+			<div class="section historySection">
+				<h3>Saved Verification History</h3>
+				<div class="searchBox">
+					<input type="text" id="historySearch" placeholder="Search by Name or EPIC No (Old or New)...">
+				</div>
+				<div class="tableWrapper">
+					<table id="historyTable">
+						<thead>
+							<tr>
+								<th>Timestamp</th>
+								<th>2002 Name (EPIC)</th>
+								<th>2026 Name (EPIC)</th>
+								<th>Type</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody id="historyBody">
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
