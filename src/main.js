@@ -1,4 +1,3 @@
-import './style.css';
 // Helper to build row strings inside the Print Window Document
 function createRow(label, value)
 {
