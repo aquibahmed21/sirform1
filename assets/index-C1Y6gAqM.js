@@ -49,6 +49,10 @@ document.addEventListener("DOMContentLoaded", function() {
 		renderHistory(this.value.toUpperCase());
 	});
 });
+document.getElementById("verificationForm").querySelectorAll("input").forEach((input) => input.addEventListener("dblclick", function(event) {
+	const value = event.target.value;
+	if (value) navigator.clipboard.writeText(value);
+}));
 document.getElementById("verificationForm").addEventListener("submit", function(event) {
 	event.preventDefault();
 	const isEdit = document.querySelector("[type=\"submit\"]").getAttribute("data-id");
@@ -76,7 +80,36 @@ document.getElementById("verificationForm").addEventListener("submit", function(
 		newAcName: document.getElementById("newAcName").value.toUpperCase(),
 		newPartNo: document.getElementById("newPartNo").value.toUpperCase(),
 		newSlNo: document.getElementById("newSlNo").value.toUpperCase(),
-		contact: document.getElementById("contact").value.toUpperCase()
+		contact: document.getElementById("contact").value.toUpperCase(),
+		enumAadhaarNo: document.getElementById("enumAadhaarNo").value.toUpperCase(),
+		enumNumberNo: document.getElementById("enumNumberNo").value.toUpperCase(),
+		enumGuardianName: document.getElementById("enumGuardianName").value.toUpperCase(),
+		enumGuardianEpic: document.getElementById("enumGuardianEpic").value.toUpperCase(),
+		enumMotherName: document.getElementById("enumMotherName").value.toUpperCase(),
+		enumMotherEpic: document.getElementById("enumMotherEpic").value.toUpperCase(),
+		enumSpouseName: document.getElementById("enumSpouseName").value.toUpperCase(),
+		enumSpouseEpic: document.getElementById("enumSpouseEpic").value.toUpperCase(),
+		is2002NamePresent: document.querySelector("input[name=\"is2002NamePresent\"]:checked").value.toUpperCase(),
+		enumElectoralName: document.getElementById("enumElectoralName").value.toUpperCase(),
+		enumElectoralEpicNo: document.getElementById("enumElectoralEpicNo").value.toUpperCase(),
+		enumElectoralRelativeName: document.getElementById("enumElectoralRelativeName").value.toUpperCase(),
+		enumElectoralRelationship: document.getElementById("enumElectoralRelationship").value.toUpperCase(),
+		enumElectoralDistrict: document.getElementById("enumElectoralDistrict").value.toUpperCase(),
+		enumElectoralState: document.getElementById("enumElectoralState").value.toUpperCase(),
+		enumElectoralConstituency: document.getElementById("enumElectoralConstituency").value.toUpperCase(),
+		enumElectoralAcNo: document.getElementById("enumElectoralAcNo").value.toUpperCase(),
+		enumElectoralPartNo: document.getElementById("enumElectoralPartNo").value.toUpperCase(),
+		enumElectoralSlNo: document.getElementById("enumElectoralSlNo").value.toUpperCase(),
+		enumElectoralP4Name: document.getElementById("enumElectoralP4Name").value.toUpperCase(),
+		enumElectoralEpicP4No: document.getElementById("enumElectoralEpicP4No").value.toUpperCase(),
+		enumElectoralP4RelativeName: document.getElementById("enumElectoralP4RelativeName").value.toUpperCase(),
+		enumElectoralRelationshipP4: document.getElementById("enumElectoralRelationshipP4").value.toUpperCase(),
+		enumElectoralDistrictP4: document.getElementById("enumElectoralDistrictP4").value.toUpperCase(),
+		enumElectoralStateP4: document.getElementById("enumElectoralStateP4").value.toUpperCase(),
+		enumElectoralConstituencyP4: document.getElementById("enumElectoralConstituencyP4").value.toUpperCase(),
+		enumElectoralAcNoP4: document.getElementById("enumElectoralAcNoP4").value.toUpperCase(),
+		enumElectoralPartNoP4: document.getElementById("enumElectoralPartNoP4").value.toUpperCase(),
+		enumElectoralSlNoP4: document.getElementById("enumElectoralSlNoP4").value.toUpperCase()
 	}, isEdit);
 	this.reset();
 	renderHistory();
@@ -125,6 +158,7 @@ function renderHistory(filterText = "") {
             <td>${item.personType}</td>
             <td>
                 <button class="actionBtn print" >PRINT</button>
+                <button class="actionBtn print printEnumeration" >PRINT ENUMERATION</button>
                 <button class="actionBtn edit" >EDIT</button>
                 <button class="actionBtn delete" >DELETE</button>
                 <button class="actionBtn view" >PROGENY</button>
@@ -135,6 +169,7 @@ function renderHistory(filterText = "") {
 		tr.querySelector(".edit").onclick = () => editRecord(item.id);
 		tr.querySelector(".delete").onclick = () => deleteRecord(item.id);
 		tr.querySelector(".view").onclick = () => addProgeny(item.id);
+		tr.querySelector(".printEnumeration").onclick = () => printEnumeration(item.id);
 		tr.scrollIntoView();
 	});
 }
@@ -155,6 +190,335 @@ function addProgeny(id) {
 	document.getElementById("newRelative").value = record.newName;
 	document.getElementById("newName").previousElementSibling.scrollIntoView();
 	document.getElementById("newName").focus();
+}
+function printEnumeration(id) {
+	const record = JSON.parse(localStorage.getItem("voterHistory")).find((item) => item.id === id);
+	if (!record) return;
+	const printWindow = window.open("", "_blank");
+	if (!printWindow) {
+		alert("POP-UP BLOCKED! PLEASE ALLOW POP-UPS TO PRINT DOCUMENT COMPILATIONS.");
+		return;
+	}
+	printWindow.afterprint = () => printWindow.close();
+	printWindow.document.write(`<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <style>
+          * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background: #f4f4f4;
+	padding: 20px;
+}
+
+.app {
+	background: #fff;
+	padding: 20px;
+	max-width: 1400px;
+	margin: auto;
+	border-radius: 8px;
+}
+
+h1,
+h2 {
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 12px;
+	margin-bottom: 20px;
+}
+
+input {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+}
+
+.actions {
+	display: flex;
+	gap: 10px;
+	margin: 20px 0;
+}
+
+button {
+	padding: 10px 20px;
+	cursor: pointer;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table th,
+table td {
+	border: 1px solid #000;
+	padding: 6px;
+	vertical-align: top;
+}
+
+#tbl {
+	margin-top: 15px;
+}
+
+#tbl th {
+	background: #efefef;
+}
+
+#tbl button {
+	margin-right: 5px;
+}
+
+/* ===========================
+PRINT
+=========================== */
+
+#printArea {
+	display: none;
+}
+
+.page {
+	width: 210mm;
+	min-height: 297mm;
+	padding: 8mm;
+	background: #fff;
+	color: #000;
+}
+
+.title {
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.top-box {
+	margin-bottom: 10px;
+}
+
+.top-box td {
+	height: 60px;
+	text-align: center;
+	font-size: 12px;
+}
+
+.info {
+	margin-bottom: 10px;
+}
+
+.info td:first-child {
+	width: 35%;
+	font-weight: bold;
+}
+
+.sir {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.sir th {
+	text-align: center;
+	background: #f5f5f5;
+}
+
+.declaration {
+	margin-top: 10px;
+	font-size: 12px;
+	line-height: 1.5;
+}
+
+.signature {
+	margin-top: 25px;
+	text-align: right;
+}
+
+.signature div {
+	min-height: 30px;
+	margin-bottom: 5px;
+}
+
+@page {
+	size: A4;
+	margin: 0;
+}
+
+@media print {
+
+	body {
+		background: #fff;
+		padding: 0;
+		margin: 0;
+	}
+
+	.no-print {
+		display: none !important;
+	}
+
+	#printArea {
+		display: block !important;
+	}
+
+	.page {
+		width: 210mm;
+		min-height: 297mm;
+		page-break-after: always;
+	}
+
+}
+      </style>
+  </head>
+  <body>
+    	<div id="printArea">
+
+		<div class="page">
+
+			<div class="title">
+				<h2>Enumeration Form</h2>
+				<h4>Name and contact No of BLO (pre-printed)</h4>
+			</div>
+
+			<table class="top-box">
+				<tr>
+					<td>Elector's Name, EPIC, Address (Pre-printed)</td>
+					<td>Serial No, Part No & Name, AC/PC Name, State</td>
+					<td>QR Code</td>
+					<td>Old Photo</td>
+					<td>Paste Current Photo</td>
+				</tr>
+			</table>
+
+			<table class="info">
+				<tr>
+					<td>Date Of Birth</td>
+					<td id="pDob">${record.oldDob}</td>
+				</tr>
+				<tr>
+					<td>Aadhaar No</td>
+					<td id="pAadhaar">${record.enumAadhaarNo}</td>
+				</tr>
+				<tr>
+					<td>Mobile No</td>
+					<td id="pMobile">${record.contact}</td>
+				</tr>
+				<tr>
+					<td>Father's/Guardian Name</td>
+					<td id="pFatherName">${record.enumGuardianName}</td>
+				</tr>
+				<tr>
+					<td>Father's EPIC</td>
+					<td id="pFatherEpic">${record.enumGuardianEpic}</td>
+				</tr>
+				<tr>
+					<td>Mother Name</td>
+					<td id="pMotherName">${record.enumMotherName}</td>
+				</tr>
+				<tr>
+					<td>Mother EPIC</td>
+					<td id="pMotherEpic">${record.enumMotherEpic}</td>
+				</tr>
+				<tr>
+					<td>Spouse Name</td>
+					<td id="pSpouseName">${record.enumSpouseName}</td>
+				</tr>
+				<tr>
+					<td>Spouse EPIC</td>
+					<td id="pSpouseEpic">${record.enumSpouseEpic}</td>
+				</tr>
+			</table>
+
+			<table class="sir">
+				<tr>
+					<th colspan="2">
+						Details of Elector in Electoral Roll of last SIR
+					</th>
+					<th colspan="2">
+						Details of Relative in last SIR
+					</th>
+				</tr>
+
+				<tr>
+					<td>Elector Name</td>
+					<td id="pElectorName">${record.enumElectoralName}</td>
+					<td>Name</td>
+					<td id="pRelativeName">${record.enumElectoralP4Name}</td>
+				</tr>
+
+				<tr>
+					<td>EPIC</td>
+					<td id="pElectorEpic">${record.enumElectoralEpicNo}</td>
+					<td>EPIC</td>
+					<td id="pRelativeEpic">${record.enumElectoralEpicP4No}</td>
+				</tr>
+
+				<tr>
+					<td>Relative Name</td>
+					<td id="pElectorRelativeName">${record.enumElectoralRelativeName}</td>
+					<td>Relative Name</td>
+					<td id="pRelativeRelativeName">${record.enumElectoralP4RelativeName}</td>
+				</tr>
+
+				<tr>
+					<td>Relationship</td>
+					<td id="pElectorRelationship">${record.enumElectoralRelationship}</td>
+					<td>Relationship</td>
+					<td id="pRelativeRelationship">${record.enumElectoralRelationshipP4}</td>
+				</tr>
+
+				<tr>
+					<td>District</td>
+					<td id="pElectorDistrict">${record.enumElectoralDistrict}</td>
+					<td>District</td>
+					<td id="pRelativeDistrict">${record.enumElectoralDistrictP4}</td>
+				</tr>
+
+				<tr>
+					<td>State</td>
+					<td id="pElectorState">${record.enumElectoralState}</td>
+					<td>State</td>
+					<td id="pRelativeState">${record.enumElectoralStateP4}</td>
+				</tr>
+
+				<tr>
+					<td>AC Name</td>
+					<td id="pElectorAcName">${record.enumElectoralConstituency}</td>
+					<td>AC Name</td>
+					<td id="pRelativeAcName">${record.enumElectoralConstituencyP4}</td>
+				</tr>
+
+			</table>
+
+			<div class="declaration">
+				<p>(i) The elector mentioned above has not acquired citizenship of any other country.</p>
+				<p>(ii) I am applying for inclusion in Electoral Roll.</p>
+				<p>(iii) False declaration is punishable under Section 31 of Representation of People Act.</p>
+			</div>
+
+			<div class="signature">
+				<div id="pSignature"></div>
+				<strong>Signature / Left Thumb Impression</strong>
+			</div>
+
+		</div>
+
+	</div>
+
+  </body>
+  </html>`);
+	printWindow.document.close();
+	printWindow.focus();
+	printWindow.print();
+	setTimeout(() => printWindow.close(), 300);
 }
 function editRecord(id) {
 	const record = JSON.parse(localStorage.getItem("voterHistory")).find((item) => item.id === id);
@@ -184,6 +548,35 @@ function editRecord(id) {
 	document.querySelector("[type=\"submit\"]").setAttribute("data-id", id);
 	document.getElementById("oldName").previousElementSibling.scrollIntoView();
 	document.getElementById("oldName").focus();
+	document.getElementById("enumAadhaarNo").value = record.enumAadhaarNo || "";
+	document.getElementById("enumNumberNo").value = record.enumNumberNo || "";
+	document.getElementById("enumGuardianName").value = record.enumGuardianName || "";
+	document.getElementById("enumGuardianEpic").value = record.enumGuardianEpic || "";
+	document.getElementById("enumMotherName").value = record.enumMotherName || "";
+	document.getElementById("enumMotherEpic").value = record.enumMotherEpic || "";
+	document.getElementById("enumSpouseName").value = record.enumSpouseName || "";
+	document.getElementById("enumSpouseEpic").value = record.enumSpouseEpic || "";
+	document.querySelector("input[name=\"is2002NamePresent\"][valueType=\"" + record.is2002NamePresent + "\"]").checked = true;
+	document.getElementById("enumElectoralName").value = record.enumElectoralName || "";
+	document.getElementById("enumElectoralEpicNo").value = record.enumElectoralEpicNo || "";
+	document.getElementById("enumElectoralRelativeName").value = record.enumElectoralRelativeName || "";
+	document.getElementById("enumElectoralRelationship").value = record.enumElectoralRelationship || "";
+	document.getElementById("enumElectoralDistrict").value = record.enumElectoralDistrict || "";
+	document.getElementById("enumElectoralState").value = record.enumElectoralState || "";
+	document.getElementById("enumElectoralAcNo").value = record.enumElectoralAcNo || "";
+	document.getElementById("enumElectoralPartNo").value = record.enumElectoralPartNo || "";
+	document.getElementById("enumElectoralSlNo").value = record.enumElectoralSlNo || "";
+	document.getElementById("enumElectoralConstituency").value = record.enumElectoralConstituency || "";
+	document.getElementById("enumElectoralP4Name").value = record.enumElectoralP4Name || "";
+	document.getElementById("enumElectoralEpicP4No").value = record.enumElectoralEpicP4No || "";
+	document.getElementById("enumElectoralP4RelativeName").value = record.enumElectoralP4RelativeName || "";
+	document.getElementById("enumElectoralRelationshipP4").value = record.enumElectoralRelationshipP4 || "";
+	document.getElementById("enumElectoralDistrictP4").value = record.enumElectoralDistrictP4 || "";
+	document.getElementById("enumElectoralStateP4").value = record.enumElectoralStateP4 || "";
+	document.getElementById("enumElectoralAcNoP4").value = record.enumElectoralAcNoP4 || "";
+	document.getElementById("enumElectoralPartNoP4").value = record.enumElectoralPartNoP4 || "";
+	document.getElementById("enumElectoralSlNoP4").value = record.enumElectoralSlNoP4 || "";
+	document.getElementById("enumElectoralConstituencyP4").value = record.enumElectoralConstituencyP4 || "";
 }
 function printFromHistory(record) {
 	generatePrintPage(record);

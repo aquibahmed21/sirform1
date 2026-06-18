@@ -7,8 +7,8 @@
 	<!-- add css -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>SIR Simple Form</title>
-  <script type="module" crossorigin src="/assets/index-R0QYJreA.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CWcqjQkn.css">
+  <script type="module" crossorigin src="/assets/index-C1Y6gAqM.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-BIDhMMa-.css">
 </head>
 
 <body>
@@ -136,6 +136,171 @@
 						</div>
 					</div>
 				</div>
+
+				<hr class="divider">
+				<div class="section">
+					<h3>Enumeration Form Details</h3>
+					<div class="grid">
+						<div class="field">
+							<label for="enumAadhaarNo">Aadhaar</label>
+							<input type="text" id="enumAadhaarNo" placeholder="xxxx-xxxx-xxxx" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}">
+						</div>
+						<div class="field">
+							<label for="enumNumberNo">Mobile</label>
+							<input type="tel" id="enumNumberNo" placeholder="1234567890" pattern="[0-9]{10}">
+						</div>
+						<div class="field">
+							<label for="enumGuardianName">Father’s/Guardian’s Name</label>
+							<input type="text" id="enumGuardianName" class="uppercase-input" placeholder="FIRSTNAME LASTNAME">
+						</div>
+						<div class="field">
+							<label for="enumGuardianEpic">Father’s/Guardian’s EPIC No. (if available)</label>
+							<input type="text" id="enumGuardianEpic" class="uppercase-input" placeholder="EPIC No.">
+						</div>
+						<div class="field">
+							<label for="enumMotherName">Mother’s Name</label>
+							<input type="text" id="enumMotherName" class="uppercase-input" placeholder="FIRSTNAME LASTNAME">
+						</div>
+						<div class="field">
+							<label for="enumMotherEpic">Mother’s EPIC No. (if available)</label>
+							<input type="text" id="enumMotherEpic" class="uppercase-input" placeholder="EPIC No.">
+						</div>
+						<div class="field">
+							<label for="enumSpouseName">Spouse’s Name (if applicable)</label>
+							<input type="text" id="enumSpouseName" class="uppercase-input" placeholder="FIRSTNAME LASTNAME">
+						</div>
+						<div class="field">
+							<label for="enumSpouseEpic">Spouse’s EPIC No. (if applicable)</label>
+							<input type="text" id="enumSpouseEpic" class="uppercase-input" placeholder="EPIC No.">
+						</div>
+					</div>
+
+					<div class="radioGroup">
+						<label>
+							<input type="radio" name="is2002NamePresent" value="Yes" valueType="Yes">
+							Yes, Name present in 2002 Voter's List
+						</label>
+						<label>
+							<input type="radio" name="is2002NamePresent" value="No" valueType="No" checked>
+							No, Name not present in 2002 Voter's List
+						</label>
+					</div>
+
+					<div class="field part3">
+						<h4>Details of the Elector in the Electoral Roll of the last SIR (Part 3)</h4>
+						<div class="grid">
+							<div class="field">
+								<label for="enumElectoralName">Elector Name</label>
+								<input type="text" id="enumElectoralName" class="uppercase-input" placeholder="FIRSTNAME LASTNAME">
+							</div>
+							<div class="field">
+								<label for="enumElectoralEpicNo">EPIC No. (if available)</label>
+								<input type="text" id="enumElectoralEpicNo" class="uppercase-input" placeholder="EPIC No.">
+							</div>
+							<div class="field">
+								<label for="enumElectoralRelativeName">Relative’s Name</label>
+								<input type="text" id="enumElectoralRelativeName" class="uppercase-input"
+									placeholder="FIRSTNAME LASTNAME">
+							</div>
+							<div class="field">
+								<label for="enumElectoralRelationship">Relationship</label>
+								<select id="enumElectoralRelationship">
+									<option value="">-- SELECT RELATIONSHIP --</option>
+									<option value="FATHER">FATHER</option>
+									<option value="MOTHER">MOTHER</option>
+								</select>
+							</div>
+							<!-- District -->
+							<div class="field">
+								<label for="enumElectoralDistrict">District</label>
+								<input type="text" id="enumElectoralDistrict" class="uppercase-input" placeholder="32-B.B.M.P(NORTH)">
+							</div>
+							<!-- State -->
+							<div class="field">
+								<label for="enumElectoralState">State</label>
+								<input type="text" id="enumElectoralState" class="uppercase-input" placeholder="KARNATAKA">
+							</div>
+							<!-- Constituency Name -->
+							<div class="field">
+								<label for="enumElectoralConstituency">AC Name</label>
+								<input type="text" id="enumElectoralConstituency" class="uppercase-input" placeholder="SARVAGNANAGAR">
+							</div>
+							<!-- AC No. -->
+							<div class="field">
+								<label for="enumElectoralAcNo">AC No.</label>
+								<input type="text" id="enumElectoralAcNo" class="uppercase-input" placeholder="160">
+							</div>
+							<!-- Part No. -->
+							<div class="field">
+								<label for="enumElectoralPartNo">Part No.</label>
+								<input type="text" id="enumElectoralPartNo" class="uppercase-input" placeholder="1">
+							</div>
+							<!-- SL No. -->
+							<div class="field">
+								<label for="enumElectoralSlNo">SL No.</label>
+								<input type="text" id="enumElectoralSlNo" class="uppercase-input" placeholder="1">
+							</div>
+						</div>
+					</div>
+
+					<div class="field part4">
+						<h4>Details of the Relative, whose name is given in the previous column, in the last SIR (Part 4)</h4>
+						<div class="grid">
+							<div class="field">
+								<label for="enumElectoralP4Name">Name</label>
+								<input type="text" id="enumElectoralP4Name" class="uppercase-input" placeholder="FIRSTNAME LASTNAME">
+							</div>
+							<div class="field">
+								<label for="enumElectoralEpicP4No">EPIC No. (if available)</label>
+								<input type="text" id="enumElectoralEpicP4No" class="uppercase-input" placeholder="EPIC No.">
+							</div>
+							<div class="field">
+								<label for="enumElectoralP4RelativeName">Relative’s Name</label>
+								<input type="text" id="enumElectoralP4RelativeName" class="uppercase-input"
+									placeholder="FIRSTNAME LASTNAME">
+							</div>
+							<div class="field">
+								<label for="enumElectoralRelationshipP4">Relationship</label>
+								<select id="enumElectoralRelationshipP4">
+									<option value="">-- SELECT RELATIONSHIP --</option>
+									<option value="FATHER">FATHER</option>
+									<option value="MOTHER">MOTHER</option>
+								</select>
+							</div>
+							<!-- District -->
+							<div class="field">
+								<label for="enumElectoralDistrictP4">District</label>
+								<input type="text" id="enumElectoralDistrictP4" class="uppercase-input" placeholder="32-B.B.M.P(NORTH)">
+							</div>
+							<!-- State -->
+							<div class="field">
+								<label for="enumElectoralStateP4">State</label>
+								<input type="text" id="enumElectoralStateP4" class="uppercase-input" placeholder="KARNATAKA">
+							</div>
+							<!-- Constituency Name -->
+							<div class="field">
+								<label for="enumElectoralConstituencyP4">AC Name</label>
+								<input type="text" id="enumElectoralConstituencyP4" class="uppercase-input" placeholder="SARVAGNANAGAR">
+							</div>
+							<!-- AC No. -->
+							<div class="field">
+								<label for="enumElectoralAcNoP4">AC No.</label>
+								<input type="text" id="enumElectoralAcNoP4" class="uppercase-input" placeholder="160">
+							</div>
+							<!-- Part No. -->
+							<div class="field">
+								<label for="enumElectoralPartNoP4">Part No.</label>
+								<input type="text" id="enumElectoralPartNoP4" class="uppercase-input" placeholder="1">
+							</div>
+							<!-- SL No. -->
+							<div class="field">
+								<label for="enumElectoralSlNoP4">SL No.</label>
+								<input type="text" id="enumElectoralSlNoP4" class="uppercase-input" placeholder="1">
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr class="divider">
 
 				<button type="submit">Save Draft</button>
 				<button type="reset" id="resetForm">Reset Form</button>
